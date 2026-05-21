@@ -4,13 +4,22 @@ import Head from "next/head";
 export default function Home() {
   const [step, setStep] = useState(1);
   const [tipe, setTipe] = useState(null);
-  const [form, setForm] = useState({ nama: "", lokasi: "", kontak: "", deskripsi: "" });
+  const [form, setForm] = useState({
+    nama: "",
+    lokasi: "",
+    kontak: "",
+    deskripsi: "",
+  });
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [ticketId, setTicketId] = useState("");
 
-  const pilihTipe = (t) => { setTipe(t); setStep(2); };
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const pilihTipe = (t) => {
+    setTipe(t);
+    setStep(2);
+  };
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const submit = async (e) => {
     e.preventDefault();
@@ -42,9 +51,11 @@ export default function Home() {
   };
 
   const reset = () => {
-    setStep(1); setTipe(null);
+    setStep(1);
+    setTipe(null);
     setForm({ nama: "", lokasi: "", kontak: "", deskripsi: "" });
-    setErrorMsg(""); setTicketId("");
+    setErrorMsg("");
+    setTicketId("");
   };
 
   return (
@@ -112,7 +123,11 @@ export default function Home() {
           {step === 2 && (
             <section className="card fade-in">
               <div className="form-head">
-                <button className="back" onClick={() => setStep(1)} type="button">
+                <button
+                  className="back"
+                  onClick={() => setStep(1)}
+                  type="button"
+                >
                   ← Ganti pilihan
                 </button>
                 <div className={`badge ${tipe}`}>
@@ -185,9 +200,15 @@ export default function Home() {
 
                 {errorMsg && <div className="alert error">⚠️ {errorMsg}</div>}
 
-                <button className="btn-primary" type="submit" disabled={loading}>
+                <button
+                  className="btn-primary"
+                  type="submit"
+                  disabled={loading}
+                >
                   {loading ? (
-                    <><span className="spinner" /> Mengirim...</>
+                    <>
+                      <span className="spinner" /> Mengirim...
+                    </>
                   ) : (
                     <>Kirim ke Engineer 🚀</>
                   )}
@@ -200,7 +221,9 @@ export default function Home() {
           {step === 3 && (
             <section className="card fade-in done">
               <div className="confetti">
-                <span>🎉</span><span>✨</span><span>🎊</span>
+                <span>🎉</span>
+                <span>✨</span>
+                <span>🎊</span>
               </div>
 
               <div className="check-wrap">
@@ -234,7 +257,7 @@ export default function Home() {
           )}
 
           <footer className="footer">
-            Made with ❤️ by IT Operations · WA Gateway by Fonnte
+            Made with ❤️ by IT Operations · 2026
           </footer>
         </div>
       </main>
