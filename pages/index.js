@@ -9,6 +9,7 @@ export default function Home() {
     lokasi: "",
     urgensi: "medium",
     deskripsi: "",
+    penyelesaian: "",
   });
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -53,7 +54,7 @@ export default function Home() {
   const reset = () => {
     setStep(1);
     setTipe(null);
-    setForm({ nama: "", lokasi: "", urgensi: "medium", deskripsi: "" });
+    setForm({ nama: "", lokasi: "", urgensi: "medium", deskripsi: "", penyelesaian: "" });
     setErrorMsg("");
     setTicketId("");
   };
@@ -200,6 +201,18 @@ export default function Home() {
                     onChange={handleChange}
                     placeholder="Jelaskan masalah/permintaannya. Sertakan langkah yang sudah dicoba, pesan error, atau aplikasi yang bermasalah ✏️"
                     required
+                  />
+                </div>
+
+                <div className="field">
+                  <label htmlFor="penyelesaian">Cara penyelesaian tiket</label>
+                  <textarea
+                    id="penyelesaian"
+                    name="penyelesaian"
+                    rows={3}
+                    value={form.penyelesaian}
+                    onChange={handleChange}
+                    placeholder="Contoh: saya melakukan reset password (opsional)"
                   />
                 </div>
 
