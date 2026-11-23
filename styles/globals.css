@@ -305,6 +305,7 @@ html, body {
 .req { color: var(--incident); }
 
 .field input,
+.field select,
 .field textarea {
   width: 100%;
   padding: 14px 16px;
@@ -319,6 +320,7 @@ html, body {
 .field input::placeholder,
 .field textarea::placeholder { color: #b8aecc; }
 .field input:focus,
+.field select:focus,
 .field textarea:focus {
   outline: none;
   border-color: var(--primary);
