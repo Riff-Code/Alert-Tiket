@@ -21,10 +21,10 @@ export default async function handler(req, res) {
     }
 
     const URGENSI = {
-      low: { label: "🟢 LOW", sla: "dalam 3 hari kerja" },
-      medium: { label: "🟡 MEDIUM", sla: "dalam 1 hari kerja" },
-      high: { label: "🟠 HIGH", sla: "dalam 4 jam" },
-      critical: { label: "🔴 CRITICAL", sla: "segera (≤ 1 jam)" },
+      low: { label: "🟢 LOW" },
+      medium: { label: "🟡 MEDIUM" },
+      high: { label: "🟠 HIGH" },
+      critical: { label: "🔴 CRITICAL" },
     };
     const urg = URGENSI[urgensi] || URGENSI.medium;
 
@@ -71,7 +71,6 @@ export default async function handler(req, res) {
     message += `👤 *Pelapor*    : ${nama}\n`;
     if (lokasi) message += `📍 *Lokasi*     : ${lokasi}\n`;
     message += `⚡ *Urgensi*    : ${urg.label}\n`;
-    message += `⏱️ *Target*     : ${urg.sla}\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
     message += `📄 *Deskripsi:*\n${deskripsi}\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
