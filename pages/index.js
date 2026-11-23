@@ -180,10 +180,10 @@ export default function Home() {
                       value={form.urgensi}
                       onChange={handleChange}
                     >
-                      <option value="low">🟢 Low — tidak mendesak</option>
-                      <option value="medium">🟡 Medium — mengganggu</option>
-                      <option value="high">🟠 High — pekerjaan terhambat</option>
-                      <option value="critical">🔴 Critical — berhenti total</option>
+                      <option value="low">🟢 Low</option>
+                      <option value="medium">🟡 Medium</option>
+                      <option value="high">🟠 High</option>
+                      <option value="critical">🔴 Critical</option>
                     </select>
                   </div>
                 </div>
