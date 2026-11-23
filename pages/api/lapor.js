@@ -75,11 +75,7 @@ export default async function handler(req, res) {
     message += `📄 *Deskripsi:*\n${deskripsi}\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
     message += `✅ *Cara penyelesaian tiket:*\n`;
-    message += `1. Balas pesan ini: *TERIMA ${ticketId}* saat mulai menangani\n`;
-    message += `2. Lakukan penanganan sesuai deskripsi di atas\n`;
-    message += `3. Setelah selesai balas: *SELESAI ${ticketId}* + tindakan yang dilakukan & hasil\n`;
-    message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `_Pesan otomatis dari Portal Lapor Kendala_`;
+    message += `-`;
 
     // Kirim ke Fonnte
     const formData = new URLSearchParams();
