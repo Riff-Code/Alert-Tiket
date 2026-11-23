@@ -89,7 +89,9 @@ export default async function handler(req, res) {
       console.error("Fonnte error:", fonnteData);
       return res.status(502).json({
         ok: false,
-        error: "Gagal mengirim ke WhatsApp.",
+        error: `Gagal mengirim ke WhatsApp${
+          fonnteData.reason ? ": " + fonnteData.reason : fonnteRes.ok ? "" : " (HTTP " + fonnteRes.status + ")"
+        }.`,
         detail: fonnteData,
       });
     }
