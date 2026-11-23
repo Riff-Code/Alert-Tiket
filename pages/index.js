@@ -7,7 +7,7 @@ export default function Home() {
   const [form, setForm] = useState({
     nama: "",
     lokasi: "",
-    kontak: "",
+    urgensi: "medium",
     deskripsi: "",
   });
   const [loading, setLoading] = useState(false);
@@ -53,7 +53,7 @@ export default function Home() {
   const reset = () => {
     setStep(1);
     setTipe(null);
-    setForm({ nama: "", lokasi: "", kontak: "", deskripsi: "" });
+    setForm({ nama: "", lokasi: "", urgensi: "medium", deskripsi: "" });
     setErrorMsg("");
     setTicketId("");
   };
@@ -171,15 +171,20 @@ export default function Home() {
                   </div>
 
                   <div className="field">
-                    <label htmlFor="kontak">No. HP</label>
-                    <input
-                      id="kontak"
-                      name="kontak"
-                      type="tel"
-                      value={form.kontak}
+                    <label htmlFor="urgensi">
+                      Urgensi <span className="req">*</span>
+                    </label>
+                    <select
+                      id="urgensi"
+                      name="urgensi"
+                      value={form.urgensi}
                       onChange={handleChange}
-                      placeholder="081234567890"
-                    />
+                    >
+                      <option value="low">🟢 Low — tidak mendesak</option>
+                      <option value="medium">🟡 Medium — mengganggu</option>
+                      <option value="high">🟠 High — pekerjaan terhambat</option>
+                      <option value="critical">🔴 Critical — berhenti total</option>
+                    </select>
                   </div>
                 </div>
 

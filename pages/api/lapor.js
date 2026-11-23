@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { tipe, nama, lokasi, kontak, deskripsi } = req.body || {};
+    const { tipe, nama, lokasi, urgensi, deskripsi } = req.body || {};
 
     // Validasi
     if (!tipe || !nama || !deskripsi) {
@@ -19,6 +19,14 @@ export default async function handler(req, res) {
     if (!["incident", "request"].includes(tipe)) {
       return res.status(400).json({ ok: false, error: "Tipe tidak valid." });
     }
+
+    const URGENSI = {
+      low: { label: "🟢 LOW", sla: "dalam 3 hari kerja" },
+      medium: { label: "🟡 MEDIUM", sla: "dalam 1 hari kerja" },
+      high: { label: "🟠 HIGH", sla: "dalam 4 jam" },
+      critical: { label: "🔴 CRITICAL", sla: "segera (≤ 1 jam)" },
+    };
+    const urg = URGENSI[urgensi] || URGENSI.medium;
 
     const token = process.env.FONNTE_TOKEN;
     const targetRaw = process.env.ENGINEER_WA; // 1 atau lebih nomor, pisahkan dengan koma
@@ -62,9 +70,15 @@ export default async function handler(req, res) {
     message += `🕒 *Waktu*      : ${waktu} WIB\n`;
     message += `👤 *Pelapor*    : ${nama}\n`;
     if (lokasi) message += `📍 *Lokasi*     : ${lokasi}\n`;
-    if (kontak) message += `📞 *Kontak*     : ${kontak}\n`;
+    message += `⚡ *Urgensi*    : ${urg.label}\n`;
+    message += `⏱️ *Target*     : ${urg.sla}\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
     message += `📄 *Deskripsi:*\n${deskripsi}\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `✅ *Cara penyelesaian tiket:*\n`;
+    message += `1. Balas pesan ini: *TERIMA ${ticketId}* saat mulai menangani\n`;
+    message += `2. Lakukan penanganan sesuai deskripsi di atas\n`;
+    message += `3. Setelah selesai balas: *SELESAI ${ticketId}* + tindakan yang dilakukan & hasil\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
     message += `_Pesan otomatis dari Portal Lapor Kendala_`;
 
