@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { tipe, nama, lokasi, urgensi, deskripsi } = req.body || {};
+    const { tipe, nama, lokasi, urgensi, deskripsi, penyelesaian } = req.body || {};
 
     // Validasi
     if (!tipe || !nama || !deskripsi) {
@@ -75,7 +75,7 @@ export default async function handler(req, res) {
     message += `📄 *Deskripsi:*\n${deskripsi}\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
     message += `✅ *Cara penyelesaian tiket:*\n`;
-    message += `-`;
+    message += `${(penyelesaian || "").trim() || "-"}`;
 
     // Kirim ke Fonnte
     const formData = new URLSearchParams();
